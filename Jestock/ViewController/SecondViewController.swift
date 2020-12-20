@@ -3,7 +3,7 @@
 //  Jestock
 //
 //  Created by Jeremy Jason on 19/12/20.
-//
+// This is my first time using api, i have know api before but i never make it into an app
 
 import UIKit
 
@@ -13,12 +13,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
 
     var x = 0
     var isi = [String]()
-    
-    var symbolA = [String]()
-    var openA = [String]()
-    var lowA = [String]()
-    
-    
+    var stocks = [StockQuote]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +38,10 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             guard let isiSymbol = alert.textFields?.first?.text else { return }
             print(isiSymbol)
             self.isi.append(isiSymbol)
-            self.x += 1
             self.getStockQuote()
+            print(self.isi)
         }
+        self.x += 1
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -68,15 +64,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary {
                         if let quoteDictionary = jsonObj.value(forKey: "Global Quote") as? NSDictionary {
                             DispatchQueue.main.async {
-                                if let symbol = quoteDictionary.value(forKey: "01. symbol") {
-                                    self.symbolA.append(symbol as! String)
-                                }
-                                if let open = quoteDictionary.value(forKey: "02. open") {
-                                    self.openA.append(open as! String)
-                                }
-                                if let low = quoteDictionary.value(forKey: "04. low") {
-                                    self.lowA.append(low as! String)
-                                }
+                                let stock = StockQuote(
+                                    symbol: quoteDictionary.value(forKey: "01. symbol") as? String ?? "",
+                                    open: quoteDictionary.value(forKey: "02. open") as? String ?? "",
+                                    low: quoteDictionary.value(forKey: "04. low") as? String ?? ""
+                                )
+                                self.stocks.append(stock)
                                 self.tableView.reloadData()
                             }
                         } else {
@@ -129,8 +122,8 @@ extension SecondViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         //isi data
-        cell.commonInit("\(symbolA[x-1])", open: "\(openA[x-1])", low: "\(lowA[x-1])")
-        
+        let stock = self.stocks[indexPath.row]
+        cell.commonInit(stock: stock)
         return cell
     }
     

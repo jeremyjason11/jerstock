@@ -24,10 +24,10 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(_ symbol: String, open:String, low:String) {
-        symbolValue.text = symbol
-        openValue.text = open
-        lowValue.text = low
+    func commonInit(stock: StockQuote) {
+        symbolValue.text = stock.symbol
+        openValue.text = stock.open
+        lowValue.text = stock.low
     }
     
 }

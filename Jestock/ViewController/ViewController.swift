@@ -22,6 +22,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     //the graph it just for the design
     @IBOutlet weak var graph: UIImageView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //cornerradius
@@ -53,7 +54,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         let session = URLSession.shared
         //url and api key
         let quoteURL = URL(string: "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=\(stockTextField.text ?? "")&apikey=7I7FV9O5TV2GHOLK")!
-        
+
         let dataTask = session.dataTask(with: quoteURL) {
             (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
