@@ -19,6 +19,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var box1: UIView!
     @IBOutlet weak var box2: UIView!
     @IBOutlet weak var box3: UIView!
+    //the graph it just for the design
+    @IBOutlet weak var graph: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +80,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                                 if let date = quoteDictionary.value(forKey: "07. latest trading day") {
                                     self.stockDateLabel.text = date as? String
                                 }
+                                self.graph.alpha = 1
 
                             }
                         } else {
@@ -109,12 +112,14 @@ class ViewController: UIViewController,UITextFieldDelegate {
         stockHighLabel.text = "";
         stockLowLabel.text = "";
         stockDateLabel.text = "";
+        //the graph it just for the design
+        graph.alpha = 0
     }
     
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -122,6 +127,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
