@@ -30,7 +30,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
         box2.layer.cornerRadius = 20
         box3.layer.cornerRadius = 20
         
-        
         resetLabels()
         self.stockTextField.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -85,19 +84,19 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
                             }
                         } else {
-                            print("Error: unable to find quote")
+                            print("Error: can not find quote")
                             DispatchQueue.main.async {
                                 self.resetLabels()
                             }
                         }
                     } else {
-                        print("Error: unable to convert json data")
+                        print("Error: can not convert json data")
                         DispatchQueue.main.async {
                             self.resetLabels()
                         }
                     }
                 } else {
-                    print("Error: did not receive data")
+                    print("Error: receive data = 0")
                     DispatchQueue.main.async {
                         self.resetLabels()
                     }

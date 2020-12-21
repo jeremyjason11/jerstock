@@ -102,6 +102,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		9A2D8D2E25902743005E3DB7 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				9A2D8D16258FAA6D005E3DB7 /* StockQuote.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
 		9A38E25B258B404A008BA174 = {
 			isa = PBXGroup;
 			children = (
@@ -126,9 +134,9 @@
 			children = (
 				9A2D8D2A258FB750005E3DB7 /* ViewController */,
 				9A2D8CFA258DD821005E3DB7 /* Cell */,
+				9A2D8D2E25902743005E3DB7 /* Struct */,
 				9A38E267258B404A008BA174 /* AppDelegate.swift */,
 				9A38E26D258B404A008BA174 /* Main.storyboard */,
-				9A2D8D16258FAA6D005E3DB7 /* StockQuote.swift */,
 				9A38E269258B404A008BA174 /* SceneDelegate.swift */,
 				9A38E270258B404A008BA174 /* Assets.xcassets */,
 				9A38E272258B404A008BA174 /* LaunchScreen.storyboard */,
